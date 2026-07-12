@@ -1,0 +1,94 @@
+body {
+  font-family: Helvetica, sans-serif;
+  margin: 1% auto 5% auto;
+  max-width: 800px;
+  background-image: url("https://wallpapercave.com/wp/jOkKbEk.jpg");
+  background-size: 100%;
+  font-family: 'Roboto Slab', serif;
+
+}
+
+header {
+  background-image: linear-gradient(white, #B4BEC4);
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 1em;
+  text-align: center;
+    box-shadow: 3px 3px 5px 3px #0005;
+}
+
+h1 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 3em;
+    margin-top: -0.1em;
+ 
+}
+
+header p {
+  text-align: left;
+
+}
+
+#img-div {
+  border: 0px solid black;
+}
+
+img {
+  border: 3px solid black;
+  border-radius: 5px;
+}
+
+#image {
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption {
+  font-size: 0.85em;
+}
+
+#oncourt {
+  max-width: 660px;
+  width: 100%;
+}
+
+#tribute-info {
+  background-image: linear-gradient(white, #B4BEC4);
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 5px 0;
+    box-shadow: 3px 3px 5px 3px #0005;
+}
+
+#tribute-link {
+
+}
+
+#contributions {
+  background-image: linear-gradient(white, #B4BEC4);
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 5px 0;
+    box-shadow: 3px 3px 5px 3px #00000055;
+}
+
+#references {
+  background-image: linear-gradient(white, #B4BEC4);
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 5px 0;
+        box-shadow: 3px 3px 5px 3px #0005;
+}
+
+a {
+  text-decoration: none;
+  color: #4B34AD;
+}
+
+a:hover {
+  color: #9E0EbD;
+  text-decoration: underline;
+}

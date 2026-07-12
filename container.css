@@ -1,0 +1,18 @@
+
+
+
+.container > div:nth-child(1n) {
+  background-color: #408062;	
+}
+
+.container > div:nth-child(3n) {
+  background-color: #88d8b0;
+}
+
+.container > div:nth-child(2n) {
+      background-color: #ff6f69;
+}
+
+.container > div:nth-child(4n) {
+      background-color: #9a7a35;
+}
