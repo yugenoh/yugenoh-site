@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BATECH 189 Coding Labwork 1 - Keith Rowley</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #0f172a, #111827);
+        color: #f9fafb;
+        margin: 0;
+        padding: 32px;
+      }
+
+      main {
+        max-width: 700px;
+        margin: 0 auto;
+        background: rgba(17, 24, 39, 0.9);
+        padding: 24px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      }
+
+      h1,
+      h2 {
+        color: #fbbf24;
+      }
+
+      p {
+        line-height: 1.6;
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        background: #374151;
+        margin: 20px 0;
+      }
+
+      .digital-display {
+        font-family: "Courier New", Monaco, monospace;
+        background: #020617;
+        color: #34d399;
+        padding: 12px 16px;
+        border-radius: 8px;
+        display: inline-block;
+        margin-top: 8px;
+        border: 1px solid #1f2937;
+        box-shadow: inset 0 0 8px rgba(52, 211, 153, 0.2);
+      }
+
+      .due-date-form {
+        margin: 16px 0;
+      }
+
+      .due-date-form label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: #e5e7eb;
+      }
+
+      .due-date-form input {
+        padding: 8px;
+        font-size: 1rem;
+        border: 1px solid #4b5563;
+        border-radius: 6px;
+        background: #1f2937;
+        color: #f9fafb;
+      }
+
+      #currentDate {
+        font-size: 1rem;
+        margin-bottom: 4px;
+      }
+
+      #liveClock {
+        font-size: 1.4rem;
+        font-weight: bold;
+      }
+
+      .countdown-display {
+        margin-top: 12px;
+      }
+
+      #countdownLabel {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+      }
+
+      #countdownValue {
+        font-size: 1.1rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>BATECH 189 Coding Labwork 1</h1>
+      <p>I have hand-coded the top part of this web page in HTML!</p>
+      <p>
+        However, I used VS Code's AI for several parts of this page, inlcuding:<br_/>
+        <ol>
+<li>The live clock</li>
+<li>The Assignment Countdown Clock</li>
+<li>The styling for the digital display and for the page's "dark mode"</li>
+        </ol>
+      </p>
+      <div class="digital-display">
+        <div id="currentDate">--</div>
+        <div id="liveClock">--:--:--</div>
+      </div>
+      <hr />
+      <h2>Assignment Due Date & Countdown</h2>
+      <form id="dueDateForm" class="due-date-form">
+        <label for="dueDate">Enter the date this assignment is due:</label>
+        <input type="date" id="dueDate" name="dueDate" />
+      </form>
+
+      <div class="digital-display countdown-display">
+        <div id="countdownLabel">Choose a due date to begin the countdown.</div>
+        <div id="countdownValue">-- days, -- hours, -- minutes, -- seconds</div>
+      </div>
+    </main>
+
+    <script>
+      const currentDate = document.getElementById("currentDate");
+      const liveClock = document.getElementById("liveClock");
+      const dueDateInput = document.getElementById("dueDate");
+      const countdownLabel = document.getElementById("countdownLabel");
+      const countdownValue = document.getElementById("countdownValue");
+
+      function updateClock() {
+        const now = new Date();
+        currentDate.textContent = now.toLocaleDateString([], {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+        liveClock.textContent = now.toLocaleTimeString([], {
+          hour: "numeric",
+          minute: "2-digit",
+          second: "2-digit",
+        });
+      }
+
+      function updateCountdown() {
+        const selectedDateValue = dueDateInput.value;
+
+        if (!selectedDateValue) {
+          countdownLabel.textContent =
+            "Choose a due date to begin the countdown.";
+          countdownValue.textContent =
+            "-- days, -- hours, -- minutes, -- seconds";
+          return;
+        }
+
+        const dueDate = new Date(`${selectedDateValue}T23:59:59`);
+        const now = new Date();
+        const difference = dueDate.getTime() - now.getTime();
+        const isPast = difference < 0;
+        const absoluteDifference = Math.abs(difference);
+        const totalSeconds = Math.floor(absoluteDifference / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        const sign = isPast ? "-" : "";
+
+        countdownLabel.textContent = isPast
+          ? "Time since due date:"
+          : "Time remaining:";
+        countdownValue.textContent = `${sign}${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+      }
+
+      updateClock();
+      updateCountdown();
+      setInterval(updateClock, 1000);
+      setInterval(updateCountdown, 1000);
+      dueDateInput.addEventListener("change", updateCountdown);
+    </script>
+  </body>
+</html>
